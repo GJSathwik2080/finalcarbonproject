@@ -1,79 +1,154 @@
+/* Auth Container - Centered Login Page */
 .auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 20px;
-  }
-  
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  width: 100%;
+}
+
+/* Auth Card */
+.auth-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 60px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Auth Icon */
+.auth-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* Auth Card Heading */
+.auth-card h1 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Auth Subtitle */
+.auth-subtitle {
+  color: #7f8c8d;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+/* Auth Features Container */
+.auth-features {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Auth Feature Item */
+.auth-feature {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.auth-feature:hover {
+  transform: translateX(5px);
+  background: #eef0f7;
+}
+
+/* Auth Feature Icon */
+.auth-feature-icon {
+  font-size: 32px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+/* Auth Feature Text */
+.auth-feature-text {
+  flex: 1;
+}
+
+.auth-feature-text h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.auth-feature-text p {
+  margin: 0;
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+/* Sign In Button */
+.auth-signin-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  margin-bottom: 20px;
+}
+
+.auth-signin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.auth-signin-btn:active {
+  transform: translateY(0);
+}
+
+/* Info Text */
+.auth-info-text {
+  margin: 0;
+  color: #95a5a6;
+  font-size: 13px;
+}
+
+/* Error Message */
+.auth-error-message {
+  background: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 2px solid #f5a5a5;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
   .auth-card {
-    background: white;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    max-width: 450px;
-    width: 100%;
+    padding: 40px 20px;
   }
-  
+
+  .auth-icon {
+    font-size: 64px;
+  }
+
   .auth-card h1 {
-    margin: 0 0 10px 0;
-    color: #2c3e50;
     font-size: 28px;
   }
-  
-  .subtitle {
-    color: #7f8c8d;
-    margin-bottom: 40px;
+
+  .auth-feature-icon {
+    font-size: 28px;
   }
-  
-  .features {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 40px;
-    padding: 20px 0;
-    border-top: 1px solid #ecf0f1;
-    border-bottom: 1px solid #ecf0f1;
-  }
-  
-  .feature {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .feature .icon {
-    font-size: 32px;
-  }
-  
-  .feature span:last-child {
-    font-size: 12px;
-    color: #7f8c8d;
-  }
-  
-  .signin-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .signin-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-  }
-  
-  .info-text {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #95a5a6;
-  }
-  
+}

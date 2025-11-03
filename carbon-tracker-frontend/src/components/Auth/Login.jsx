@@ -8,7 +8,6 @@ export default function Login() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // If already logged in, redirect to dashboard
     if (user) {
       navigate('/dashboard')
     }
@@ -17,29 +16,39 @@ export default function Login() {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h1>🌍 Carbon Footprint Tracker</h1>
-        <p className="subtitle">Track and reduce your environmental impact</p>
+        <div className="auth-icon">🌍</div>
+        <h1>Carbon Footprint Tracker</h1>
+        <p className="auth-subtitle">Track and reduce your environmental impact</p>
         
-        <div className="features">
-          <div className="feature">
-            <span className="icon">📊</span>
-            <span>Track Purchases</span>
+        <div className="auth-features">
+          <div className="auth-feature">
+            <span className="auth-feature-icon">📊</span>
+            <div className="auth-feature-text">
+              <h3>Track Purchases</h3>
+              <p>Log your purchases and calculate emissions</p>
+            </div>
           </div>
-          <div className="feature">
-            <span className="icon">📈</span>
-            <span>View Analytics</span>
+          <div className="auth-feature">
+            <span className="auth-feature-icon">📈</span>
+            <div className="auth-feature-text">
+              <h3>View Analytics</h3>
+              <p>See detailed emission trends over time</p>
+            </div>
           </div>
-          <div className="feature">
-            <span className="icon">🌱</span>
-            <span>Reduce Emissions</span>
+          <div className="auth-feature">
+            <span className="auth-feature-icon">🌱</span>
+            <div className="auth-feature-text">
+              <h3>Reduce Emissions</h3>
+              <p>Make informed decisions to reduce impact</p>
+            </div>
           </div>
         </div>
 
-        <button className="signin-btn" onClick={handleSignIn}>
+        <button className="auth-signin-btn" onClick={handleSignIn}>
           Sign In with AWS Cognito
         </button>
         
-        <p className="info-text">
+        <p className="auth-info-text">
           Secure authentication powered by AWS
         </p>
       </div>

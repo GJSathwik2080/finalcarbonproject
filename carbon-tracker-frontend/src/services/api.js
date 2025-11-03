@@ -1,13 +1,37 @@
+import { fetchAuthSession } from 'aws-amplify/auth'
+
 const API_ENDPOINT = 'https://cja71ie2h4.execute-api.eu-north-1.amazonaws.com/dev'
+
+async function getAuthHeaders() {
+  try {
+    const session = await fetchAuthSession()
+    const token = session.tokens?.idToken?.toString()
+    
+    if (!token) {
+      throw new Error('No auth token available')
+    }
+    
+    console.log('🔑 Auth token obtained')
+    
+    return {
+      'Authorization': token,
+      'Content-Type': 'application/json'
+    }
+  } catch (error) {
+    console.error('❌ Error getting auth headers:', error)
+    throw new Error('Not authenticated')
+  }
+}
 
 export async function getPurchases(userId) {
   try {
     console.log('📡 Fetching purchases for:', userId)
+    const headers = await getAuthHeaders()
     
     const url = `${API_ENDPOINT}/purchase?UserId=${userId}`
     console.log('🌐 Request URL:', url)
     
-    const response = await fetch(url)  // No auth headers needed
+    const response = await fetch(url, { headers })
     console.log('📥 Response status:', response.status)
     
     if (!response.ok) {
@@ -29,14 +53,13 @@ export async function getPurchases(userId) {
 export async function logPurchase(purchaseData) {
   try {
     console.log('📡 Logging purchase:', purchaseData)
+    const headers = await getAuthHeaders()
     
     const response = await fetch(
       `${API_ENDPOINT}/purchase`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers,
         body: JSON.stringify(purchaseData)
       }
     )
