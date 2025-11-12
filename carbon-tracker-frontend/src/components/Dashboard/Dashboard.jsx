@@ -5,6 +5,8 @@ import CarbonSummary from './CarbonSummary'
 import PurchaseList from './PurchaseList'
 import EmissionsChart from './EmissionsChart'
 import LogPurchaseForm from '../Purchase/LogPurchaseForm'
+import Spinner from '../Common/Spinner' // Import Spinner
+import { FiLogOut, FiPlus, FiX, FiGlobe } from 'react-icons/fi' // Import icons
 import './Dashboard.css'
 
 export default function Dashboard() {
@@ -15,10 +17,20 @@ export default function Dashboard() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    loadPurchases()
-  }, [user])
+    // Check if user exists before loading
+    if (user?.username) {
+      loadPurchases()
+    } else {
+      setLoading(false) // Not logged in, stop loading
+    }
+  }, [user]) // Re-run when user object changes
 
   async function loadPurchases() {
+    if (!user?.username) {
+      setError("User not found. Please sign in again.")
+      return
+    }
+    
     try {
       setLoading(true)
       setError('')
@@ -36,17 +48,23 @@ export default function Dashboard() {
 
   function handlePurchaseAdded() {
     setShowAddForm(false)
-    loadPurchases()
+    loadPurchases() // Refresh data after new purchase
+  }
+
+  // Handle case where user is not yet loaded
+  if (!user) {
+    return <Spinner size="large" />
   }
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <div className="header-left">
-          <h1>🌍 Carbon Footprint Tracker</h1>
+          <h1><FiGlobe /> Carbon Footprint Tracker</h1>
           <p className="welcome-text">Welcome back, {user.username}!</p>
         </div>
-        <button className="signout-btn" onClick={handleSignOut}>
+        <button className="btn btn-primary signout-btn" onClick={handleSignOut}>
+          <FiLogOut />
           Logout
         </button>
       </header>
@@ -62,10 +80,11 @@ export default function Dashboard() {
 
       <div className="dashboard-actions">
         <button 
-          className="add-purchase-btn"
+          className="btn btn-primary add-purchase-btn"
           onClick={() => setShowAddForm(!showAddForm)}
         >
-          {showAddForm ? '✕ Cancel' : '+ Log Purchase'}
+          {showAddForm ? <FiX /> : <FiPlus />}
+          {showAddForm ? 'Cancel' : 'Log Purchase'}
         </button>
       </div>
 
@@ -79,7 +98,7 @@ export default function Dashboard() {
 
       {loading ? (
         <div className="loading-container">
-          <h2>🔄 Loading purchases...</h2>
+          <Spinner size="large" />
         </div>
       ) : (
         <>

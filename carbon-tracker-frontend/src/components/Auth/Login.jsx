@@ -1,6 +1,13 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { 
+  FiGlobe, 
+  FiBarChart2, 
+  FiTrendingUp, 
+  FiActivity, 
+  FiShield 
+} from 'react-icons/fi'
 import './Auth.css'
 
 export default function Login() {
@@ -16,27 +23,29 @@ export default function Login() {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <div className="auth-icon">🌍</div>
+        <div className="auth-icon">
+          <FiGlobe />
+        </div>
         <h1>Carbon Footprint Tracker</h1>
         <p className="auth-subtitle">Track and reduce your environmental impact</p>
         
         <div className="auth-features">
           <div className="auth-feature">
-            <span className="auth-feature-icon">📊</span>
+            <span className="auth-feature-icon"><FiBarChart2 /></span>
             <div className="auth-feature-text">
               <h3>Track Purchases</h3>
               <p>Log your purchases and calculate emissions</p>
             </div>
           </div>
           <div className="auth-feature">
-            <span className="auth-feature-icon">📈</span>
+            <span className="auth-feature-icon"><FiTrendingUp /></span>
             <div className="auth-feature-text">
               <h3>View Analytics</h3>
               <p>See detailed emission trends over time</p>
             </div>
           </div>
           <div className="auth-feature">
-            <span className="auth-feature-icon">🌱</span>
+            <span className="auth-feature-icon"><FiActivity /></span>
             <div className="auth-feature-text">
               <h3>Reduce Emissions</h3>
               <p>Make informed decisions to reduce impact</p>
@@ -45,6 +54,7 @@ export default function Login() {
         </div>
 
         <button className="auth-signin-btn" onClick={handleSignIn}>
+          <FiShield />
           Sign In with AWS Cognito
         </button>
         

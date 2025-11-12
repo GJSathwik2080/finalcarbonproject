@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import Spinner from './Common/Spinner' // Import the new Spinner
 
 export function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -10,9 +11,11 @@ export function ProtectedRoute({ children }) {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        height: '100vh' 
+        height: '100vh',
+        background: 'var(--background-main)'
       }}>
-        <h2>🔄 Loading...</h2>
+        {/* Use the new Spinner component */}
+        <Spinner size="large" />
       </div>
     )
   }

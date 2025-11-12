@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { logPurchase } from '../../services/api'
+import Spinner from '../Common/Spinner' // Import Spinner
+import { FiPlusCircle, FiAlertTriangle, FiCheck } from 'react-icons/fi' // Import Icons
 import './Purchase.css'
 
 export default function LogPurchaseForm({ userId, onSuccess, onCancel }) {
@@ -34,9 +36,9 @@ export default function LogPurchaseForm({ userId, onSuccess, onCancel }) {
       }
 
       await logPurchase(purchaseData)
-      onSuccess()
+      onSuccess() // Callback to refresh list and close form
       
-      // Reset form
+      // Reset form (optional, as component will unmount)
       setFormData({
         productName: '',
         weight: '',
@@ -52,8 +54,12 @@ export default function LogPurchaseForm({ userId, onSuccess, onCancel }) {
 
   return (
     <div className="log-purchase-form">
-      <h3>📝 Log New Purchase</h3>
-      {error && <div className="error-message">❌ {error}</div>}
+      <h3><FiPlusCircle /> Log New Purchase</h3>
+      {error && (
+        <div className="error-message">
+          <FiAlertTriangle /> {error}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -66,6 +72,7 @@ export default function LogPurchaseForm({ userId, onSuccess, onCancel }) {
             value={formData.productName}
             onChange={handleChange}
             required
+            disabled={loading}
           />
         </div>
 
@@ -82,6 +89,7 @@ export default function LogPurchaseForm({ userId, onSuccess, onCancel }) {
               value={formData.weight}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
 
@@ -97,6 +105,7 @@ export default function LogPurchaseForm({ userId, onSuccess, onCancel }) {
               value={formData.shippingDistance}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
         </div>
@@ -108,19 +117,31 @@ export default function LogPurchaseForm({ userId, onSuccess, onCancel }) {
             name="deliveryMode"
             value={formData.deliveryMode}
             onChange={handleChange}
+            disabled={loading}
           >
-            <option value="Ground">🚚 Ground</option>
-            <option value="Air">✈️ Air</option>
-            <option value="Sea">🚢 Sea</option>
+            {/* Removed emojis for a cleaner native select */}
+            <option value="Ground">Ground</option>
+            <option value="Air">Air</option>
+            <option value="Sea">Sea</option>
           </select>
         </div>
 
         <div className="form-actions">
-          <button type="button" className="cancel-btn" onClick={onCancel}>
+          <button 
+            type="button" 
+            className="btn btn-secondary" 
+            onClick={onCancel}
+            disabled={loading}
+          >
             Cancel
           </button>
-          <button type="submit" className="submit-btn" disabled={loading}>
-            {loading ? '⏳ Logging...' : '✅ Log Purchase'}
+          <button 
+            type="submit" 
+            className="btn btn-primary submit-btn" 
+            disabled={loading}
+            style={{ minWidth: '140px' }} // Prevents layout shift
+          >
+            {loading ? <Spinner size="small" /> : <><FiCheck /> Log Purchase</>}
           </button>
         </div>
       </form>

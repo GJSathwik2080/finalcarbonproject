@@ -4,17 +4,18 @@
   max-width: 100%;
   margin: 0;
   padding: 40px 60px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--background-gradient);
   min-height: 100vh;
 }
 
-/* Carbon Summary Grid - WIDER */
-.carbon-summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 40px;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .header-left {
@@ -25,48 +26,77 @@
 
 .dashboard-header h1 {
   margin: 0;
-  color: #2c3e50;
+  color: var(--text-dark);
   font-size: 36px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .welcome-text {
   margin: 0;
-  color: #7f8c8d;
+  color: var(--text-light);
   font-size: 16px;
   font-weight: 500;
 }
 
-/* Sign Out Button */
-.signout-btn {
-  padding: 12px 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+/* Base Button Style */
+.btn {
+  padding: 12px 24px;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: var(--border-radius-medium);
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
 }
 
-.signout-btn:hover {
+/* Primary Button */
+.btn-primary {
+  background: var(--primary-gradient);
+  color: var(--text-white);
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-primary-hover);
 }
 
-.signout-btn:active {
+.btn-primary:active {
   transform: translateY(0);
+}
+
+/* Secondary/Cancel Button */
+.btn-secondary {
+  background: var(--background-border);
+  color: var(--text-light);
+}
+
+.btn-secondary:hover {
+  background: #d5dbdb;
+  color: var(--text-dark);
+}
+
+/* Sign Out Button (Specific styles) */
+.signout-btn {
+  padding: 12px 30px;
+  font-size: 16px;
 }
 
 /* Error Banner */
 .error-banner {
-  background: #fee;
+  background: var(--background-error-light);
   border: 2px solid #f5a5a5;
-  color: #c33;
+  color: var(--text-error);
   padding: 15px 20px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-medium);
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
@@ -75,8 +105,8 @@
 }
 
 .error-banner button {
-  background: #c33;
-  color: white;
+  background: var(--text-error);
+  color: var(--text-white);
   border: none;
   padding: 8px 16px;
   border-radius: 6px;
@@ -98,28 +128,28 @@
 }
 
 .summary-card {
-  background: white;
+  background: var(--background-white);
   padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
   transition: all 0.3s ease;
-  border-left: 5px solid #667eea;
+  border-left: 5px solid var(--primary-color);
 }
 
 .summary-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-large);
 }
 
 .card-icon {
-  font-size: 48px;
+  font-size: 40px; /* Reduced from 48px */
   margin-bottom: 15px;
-  display: block;
+  color: var(--primary-color);
 }
 
 .summary-card h3 {
   margin: 0 0 10px 0;
-  color: #2c3e50;
+  color: var(--text-dark);
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -130,19 +160,20 @@
   margin: 10px 0;
   font-size: 36px;
   font-weight: 700;
-  color: #667eea;
+  color: var(--primary-color);
+  line-height: 1.1;
 }
 
 .unit {
   font-size: 18px;
-  color: #95a5a6;
+  color: var(--text-light);
   margin-left: 8px;
   font-weight: 500;
 }
 
 .subtitle {
   display: block;
-  color: #95a5a6;
+  color: var(--text-light);
   font-size: 13px;
   margin-top: 10px;
 }
@@ -151,121 +182,71 @@
 .loading-container {
   text-align: center;
   padding: 60px 20px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
-
-.loading-container h2 {
-  color: #667eea;
-  font-size: 24px;
+  background: var(--background-white);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
 }
 
 /* Dashboard Actions */
 .dashboard-actions {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
 }
 
 .add-purchase-btn {
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
   font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-.add-purchase-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.add-purchase-btn:active {
-  transform: translateY(0);
-}
-
-/* Emissions Chart */
-.emissions-chart {
-  background: white;
+/* Base Card for Chart/List */
+.data-card {
+  background: var(--background-white);
   padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
   margin-bottom: 40px;
 }
 
-.emissions-chart h2 {
+.data-card-header {
   margin: 0 0 25px 0;
-  color: #2c3e50;
+  color: var(--text-dark);
   font-size: 24px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.chart-placeholder {
+/* Placeholder for Empty States */
+.placeholder-container {
   text-align: center;
   padding: 60px 20px;
-  color: #95a5a6;
+  color: var(--text-light);
 }
 
-.chart-placeholder p {
+.placeholder-icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 15px;
+  color: var(--text-placeholder);
+}
+
+.placeholder-container p {
   margin: 10px 0;
   font-size: 16px;
 }
 
 .placeholder-subtitle {
   font-size: 14px;
-  color: #bdc3c7;
-}
-
-/* Purchase List */
-.purchase-list {
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
-
-.purchase-list h2 {
-  margin: 0 0 25px 0;
-  color: #2c3e50;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-/* Empty State */
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: #95a5a6;
-}
-
-.empty-icon {
-  font-size: 64px;
-  display: block;
-  margin-bottom: 15px;
-}
-
-.empty-state p {
-  margin: 10px 0;
-  font-size: 16px;
-}
-
-.empty-subtitle {
-  font-size: 14px;
-  color: #bdc3c7;
+  color: var(--text-placeholder);
 }
 
 /* Table Container */
 .table-container {
   overflow-x: auto;
-  border-radius: 10px;
-  border: 1px solid #ecf0f1;
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--background-border);
 }
 
 table {
@@ -280,19 +261,20 @@ thead {
 th {
   padding: 18px 15px;
   text-align: left;
-  color: #2c3e50;
+  color: var(--text-dark);
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid var(--primary-color);
 }
 
 td {
   padding: 18px 15px;
-  border-bottom: 1px solid #ecf0f1;
-  color: #2c3e50;
+  border-bottom: 1px solid var(--background-border);
+  color: var(--text-dark);
   font-size: 15px;
+  vertical-align: middle;
 }
 
 tbody tr {
@@ -309,14 +291,22 @@ tbody tr:last-child td {
 
 .product-name {
   font-weight: 600;
-  color: #667eea;
+  color: var(--primary-color);
+}
+
+.delivery-mode-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .delivery-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 6px 12px;
-  background: #e8f0f7;
-  color: #667eea;
+  background: var(--accent-blue-light);
+  color: var(--primary-color);
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
@@ -325,7 +315,7 @@ tbody tr:last-child td {
 
 .emissions-value {
   font-weight: 700;
-  color: #e74c3c;
+  color: var(--accent-red);
 }
 
 /* Responsive Design */
@@ -344,12 +334,7 @@ tbody tr:last-child td {
     font-size: 28px;
   }
 
-  .carbon-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .emissions-chart,
-  .purchase-list {
+  .data-card {
     padding: 25px;
   }
 
@@ -372,9 +357,8 @@ tbody tr:last-child td {
   .dashboard-header h1 {
     font-size: 24px;
   }
-
-  .emissions-chart,
-  .purchase-list {
+  
+  .data-card {
     padding: 15px;
   }
 
