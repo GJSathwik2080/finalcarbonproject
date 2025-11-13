@@ -2,41 +2,41 @@
  * A simple, modern CSS spinner.
  */
  .spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* Sizing */
-  .spinner-container--small {
-    height: 20px; /* Match button height */
-    width: 20px;
-  }
-  .spinner-container--medium {
-    padding: 40px;
-  }
-  .spinner-container--large {
-    padding: 80px;
-  }
-  
-  .spinner {
-    border: 4px solid var(--primary-color-light);
-    border-top: 4px solid var(--primary-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-  }
-  
-  .spinner-container--small .spinner {
-    width: 16px;
-    height: 16px;
-    border-width: 2px;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sizing */
+.spinner-container--small {
+  height: 20px; /* Match button height */
+  width: 20px;
+}
+.spinner-container--medium {
+  padding: 40px;
+}
+.spinner-container--large {
+  padding: 80px;
+}
+
+.spinner {
+  border: 4px solid var(--primary-color-light);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-container--small .spinner {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

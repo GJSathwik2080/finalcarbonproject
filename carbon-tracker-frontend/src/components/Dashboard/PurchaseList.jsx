@@ -1,4 +1,12 @@
-import { FiArchive, FiInbox, FiTruck, FiPaperclip, FiAnchor } from 'react-icons/fi'
+import { 
+  FiArchive, 
+  FiInbox, 
+  FiTruck, 
+  FiPaperclip, 
+  FiAnchor,
+  FiEdit2,
+  FiTrash2
+} from 'react-icons/fi'
 
 // Helper component to render delivery mode icon
 const DeliveryMode = ({ mode }) => {
@@ -20,7 +28,8 @@ const DeliveryMode = ({ mode }) => {
   )
 }
 
-export default function PurchaseList({ purchases }) {
+// Add onEdit and onDelete props
+export default function PurchaseList({ purchases, onEdit, onDelete }) {
   if (purchases.length === 0) {
     return (
       <div className="data-card purchase-list">
@@ -52,6 +61,8 @@ export default function PurchaseList({ purchases }) {
               <th>Distance (km)</th>
               <th>Mode</th>
               <th>Emissions (kg CO₂)</th>
+              {/* Add Actions header */}
+              <th className="actions-column">Actions</th> 
             </tr>
           </thead>
           <tbody>
@@ -66,6 +77,23 @@ export default function PurchaseList({ purchases }) {
                 </td>
                 <td className="emissions-value">
                   {parseFloat(purchase.CarbonEmissionValue).toFixed(2)}
+                </td>
+                {/* Add Actions cell with buttons */}
+                <td className="actions-cell">
+                <button 
+                    className="btn-icon" 
+                    onClick={() => onEdit(purchase)} // <-- NEW
+                    title="Edit"
+                  >
+                    <FiEdit2 />
+                </button>
+                  <button 
+                    className="btn-icon btn-icon--delete" 
+                    onClick={() => onDelete(purchase.PurchaseId)}
+                    title="Delete"
+                  >
+                    <FiTrash2 />
+                  </button>
                 </td>
               </tr>
             ))}

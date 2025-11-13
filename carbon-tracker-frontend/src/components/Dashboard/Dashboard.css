@@ -84,6 +84,19 @@
   color: var(--text-dark);
 }
 
+/* Red danger button */
+.btn-danger {
+  background: var(--accent-red);
+  color: var(--text-white);
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+.btn-danger:hover {
+  background: #c0392b;
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+  transform: translateY(-2px);
+}
+
+
 /* Sign Out Button (Specific styles) */
 .signout-btn {
   padding: 12px 30px;
@@ -142,7 +155,7 @@
 }
 
 .card-icon {
-  font-size: 40px; /* Reduced from 48px */
+  font-size: 40px; 
   margin-bottom: 15px;
   color: var(--primary-color);
 }
@@ -217,6 +230,36 @@
   align-items: center;
   gap: 10px;
 }
+
+/* --- NEW: Charts Layout --- */
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* Make charts full width on smaller screens */
+@media (max-width: 1024px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pie chart specific styles */
+.emissions-category-chart .recharts-legend-wrapper {
+  /* Move legend to bottom */
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  margin-left: 30px; /* Align with padding */
+}
+
+.emissions-category-chart .recharts-surface {
+  margin-bottom: 40px; /* Make space for legend */
+}
+/* --- END NEW --- */
+
 
 /* Placeholder for Empty States */
 .placeholder-container {
@@ -318,6 +361,85 @@ tbody tr:last-child td {
   color: var(--accent-red);
 }
 
+/* Actions Column */
+.actions-column {
+  width: 120px; 
+  text-align: center !important;
+}
+
+.actions-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Icon-only Buttons */
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  color: var(--text-light);
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.2s ease;
+  margin: 0 4px;
+}
+
+.btn-icon:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+}
+
+.btn-icon--delete:hover {
+  color: var(--accent-red);
+  background-color: #fee;
+}
+
+/* Modal styles (for the delete confirmation) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--background-white);
+  padding: 30px;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-large);
+  max-width: 450px;
+  width: 90%;
+}
+
+.modal-content h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  font-size: 15px;
+  color: var(--text-light);
+  margin-bottom: 25px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .dashboard {
@@ -370,4 +492,104 @@ tbody tr:last-child td {
   .metric {
     font-size: 28px;
   }
+}
+
+/* --- Add this to the end of Dashboard.css --- */
+
+/* Wrapper for the chart header and toggle buttons */
+.data-card-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.data-card-header-container .data-card-header {
+  margin: 0; /* Remove default bottom margin */
+}
+
+/* Button toggle group styling */
+.toggle-group {
+  display: flex;
+  background: var(--background-border);
+  border-radius: var(--border-radius-medium);
+  padding: 4px;
+}
+
+.toggle-btn {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: #e0e4e7;
+  color: var(--text-dark);
+}
+
+.toggle-btn.active {
+  background: var(--background-white);
+  color: var(--primary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Add this to the end of Dashboard.css --- */
+
+/* AI Tips Modal Styles */
+.modal-content.ai-tips-modal {
+  max-width: 550px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.modal-header h3 {
+  margin: 0;
+}
+
+.modal-body {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.spinner-container-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  gap: 10px;
+  color: var(--text-light);
+}
+
+.ai-tips-body {
+  font-size: 15px;
+  color: var(--text-dark);
+  line-height: 1.6;
+  max-height: 40vh; /* Allow scrolling for long tips */
+  overflow-y: auto;
+  white-space: pre-wrap; /* This renders newlines from the AI */
+  padding-right: 10px; /* For scrollbar */
+}
+
+/* Make disabled buttons look right */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
